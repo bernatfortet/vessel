@@ -1,0 +1,30 @@
+head
+	title Vessel
+
+body
+	//+loginButtons
+	.shell
+
+		//+addLink
+
+		.links-list
+			h2 Today's
+			each links
+				+link
+
+			h2 Sent Links
+			each sent_links
+				+link
+
+
+template(name="addLink")
+	form.add-link
+		input(type="text" name='text' placeholder="Add Link")
+
+template(name="link")
+	.link
+		.title
+			img.favicon(src="{{fav_icon_url}}")
+			.text {{link_title}}
+		.url {{link_url}}
+		.remove

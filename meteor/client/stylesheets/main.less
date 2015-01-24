@@ -1,0 +1,37 @@
+@import "style-global.less";
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800');
+
+.open{ font-family: 'Open Sans', sans-serif; }
+
+
+
+body{ background:#ededed; margin-top:40px; }
+
+.shell{ width:70%; margin:0 auto;}
+
+
+
+.add-problem{ .overflow; }
+	.grades-list{ width:100px; .fl;
+		.grade{ .tcenter;
+			&.Active{ background:grey; }
+		}
+	}
+
+	.modes{ .fl; }
+		.mode.Active{ background-color:grey;}
+		.flash{ width:50px; height:50px; .block; background:url('img/flash.png') no-repeat; .bg-size(contain); }
+		.redpoint{ width:30px; height:30px; .br(50%); background:red; }
+
+
+.link{ margin:8px; padding:16px 24px; .rel; background:white;.open; .br(2px); border:2px solid transparent;  .bs(0px 2px 1px 0px fade(black,5%) ); .anchor;
+	&:hover{ border:2px solid lighten(black, 70%);
+		.remove{ .op(1); background:red; }
+	}
+	.title{ .overflow; }
+		.text{ .fl; }
+		.favicon{ width:16px; .fl; margin:3px 16px 0 0; }
+	.url{ margin-top:8px; .fs(12px); font-weight:300; color:lighten(black, 70%); }
+	.remove{ width:16px; height:16px; .abs; right:8px; top:8px; background:black; .op(0.1); .anim; }
+}
