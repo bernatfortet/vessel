@@ -1,0 +1,53 @@
+extends helpers/layout
+
+block content
+
+	- var backgroundColor = "background-color: #ffffff;"
+	- var width = "600;"
+	- var bold = "font-weight: bold;"
+	- var tcenter = "text-align: center;"
+
+	include helpers/top-logo
+
+	include helpers/separator
+
+
+	//Paul's Face Message
+	tr(style='background-color: #ffffff;', width='600')
+		td(valign='top', width='413')
+			p(style='padding: 35px 0 10px 30px; font-weight: bold;') Hi! My name is Paul and I’m one of the co-founders of Aviate
+			p(style='padding: 0 0 20px 30px; line-height: 22px;')
+				| Over the past few months, we have been building out our closed alpha version of Aviate, and we want to thank you for your interest and patience as we’ve worked to create the best homescreen experience possible. We’ve been 
+				a(href='http://bit.ly/1dUst14') blown away by the excitement
+				|  from everyone, and the volume of invite requests to try out the alpha.
+
+
+		include helpers/paul-face
+
+	include helpers/separator
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='padding: 30px 30px 0px 30px; line-height: 22px;')
+				| We are so grateful for your positive feedback and patience.  We know it’s been a long wait,  and everyone at Aviate is working around the clock to make sure that the wait is worth it.  We are happy to say that we have ironed out some of our scaling issues and will be letting in a larger number of users very soon.  Over the <strong>next week</strong>, we aim to <strong>reduce wait time</strong> for Aviate alpha <strong>from a couple months to a few weeks.</strong>
+			p(style='padding: 20px 30px 0 30px; line-height: 22px;')
+				| As with everyone that has been using our alpha version already, we’d really appreciate your feedback and input as we continue to build out Aviate and prepare for our official launch. We’re excited to have you be a part of our alpha community, and we can’t wait to show off what we’ve been working on.
+			p(style='padding: 20px 30px 30px 30px; line-height: 22px;')
+				| If you have any questions please email us at 
+				a(href='mailto:invite@getaviate.com') invite@getaviate.com
+				| . To stay up to speed on our progress you can follow us on twitter 
+				a(href='http://bit.ly/16fxJXt') @Aviate
+				| !
+
+
+	include helpers/separator
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='padding: 10px 0 0 0; text-align: center; font-weight: bold;')
+				| Excited to have you on board!
+			p(style='padding: 0; text-align: center;')
+				| the Aviate Team
+			p(style='padding: 0; text-align: center;')
+				img(align='center', height='90', src='https://d2q0qd5iz04n9u.cloudfront.net/_ssl/proxy.php/http/gallery.mailchimp.com/75d4f4fc986612570d22d1659/images/aviate_logo_grey.png', style='width: 41px; height: 90px;', width='41')
+

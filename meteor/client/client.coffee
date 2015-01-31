@@ -30,3 +30,7 @@ Template.body.events
 
 	"click .remove": (event) ->
 		Meteor.call "removeLink", this._id
+
+
+
+

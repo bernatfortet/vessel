@@ -7,11 +7,22 @@ Meteor.publish( 'links', ->
 )
 
 
+
+Accounts.validateLoginAttempt( ( data ) ->
+	#console.log 'test', data
+	#console.log data.user._id
+
+	return true
+)
+
 Meteor.methods
 
+	test: ->
+		console.log 'test'
+
 	addLink: (linkData) ->
-		console.log 'Adding Link. Next log should say bernatfortet.com'
-		console.log linkData
+		console.log "Link Data ----------------"
+		console.log linkData.link_title
 
 		Links.insert
 			link_title: linkData.link_title
@@ -19,11 +30,11 @@ Meteor.methods
 			link_url: linkData.link_url
 			sent: false
 			createdAt: new Date()
+			owner: linkData.owner
 
 
 	removeLink: (linkId) ->
 		console.log 'Removing Link', linkId
-
 		Links.remove(linkId)
 
 
@@ -33,7 +44,7 @@ Meteor.methods
 
 		LINKS_PER_EMAIL = 3
 
-		unsentEmails = Links.find({ sent: false}, { limit: LINKS_PER_EMAIL }).fetch()
+		unsentEmails = Links.find({ sent: false}, { limit: 3 }).fetch()
 
 		#console.log 'unsentEmails', unsentEmails.fetch()
 
@@ -52,63 +63,56 @@ Meteor.methods
 
 		console.log 'sending email'
 
-		this.unblock()
+		#this.unblock()
 
 
 		#Meteor.call( 'sendMandrillEmail' )
 
-	sendMandrillEmail: (data) ->
+	sendMandrillEmail: () ->
 
-		test = Meteor.Mandrill.sendTemplate
+
+		unsentEmails = Links.find({ sent: false}, { limit: 3 }).fetch()
+
+		email = Meteor.Mandrill.sendTemplate
 			template_name: 'links-digest'
 			template_content: [
 				{
 					name: "header"
 					content: "Hello b"
 				}
-				{
-					name: "link1"
-					content: "herea re the links"
-				}
-				{
-					name: "link2"
-					content: "herea re the links"
-				}
-				{
-					name: "link3"
-					content: "herea re the links"
-				}
 			]
 			message:
 				global_merge_vars: [
-					name: "var1"
-					content: "Global Value 1"
-				]
-				merge_vars: [
-					rcpt: "email@example.com"
-					vars: [
-						{
-							name: "fname"
-							content: "John"
-						}
-						{
-							name: "lname"
-							content: "Smith"
-						}
-					]
+					{
+						name: "link1_name"
+						content: unsentEmails[0].link_title
+					}
+					{
+						name: "link1_url"
+						content: unsentEmails[0].link_url
+					}
+					{
+						name: "link2_name"
+						content: unsentEmails[1].link_title
+					}
+					{
+						name: "link2_url"
+						content: unsentEmails[1].link_url
+					}
+					{
+						name: "link3_name"
+						content: unsentEmails[2].link_title
+					}
+					{
+						name: "link3_url"
+						content: unsentEmails[2].link_url
+					}
 				]
 				from_email: 'email@example.com'
 				to: [email: "socrattes@gmail.com"]
 
 
-		console.log test
-		###
-		Meteor.Mandrill.send
-			to: 'socrattes@gmail.com'
-			from: 'test@test.com'
-			subject: 'Your Links'
-			html: data
-		###
+		console.log email
 
 
 SyncedCron.add

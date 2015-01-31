@@ -1,0 +1,49 @@
+extends helpers/layout
+
+block head
+	title code
+
+block content
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px 0; padding: 0 30px 0 50px; font-size:13px; line-height: 21px;')
+				| Welcome to the Aviate Community! We are so glad to have you. We hope Aviate simplifies your phone and delivers useful information throughout your day.
+			p(style='width: 500px; margin: 30px 0; padding: 0 30px 0 50px; font-size:13px; line-height: 21px;')
+				| Here is your invite code: <strong>*|CODE|*</strong>
+
+
+	+separator( 3 )
+
+	tr(style=backgroundColor, width=width)
+		td( background="http://aviate-website.s3-website-us-east-1.amazonaws.com/mailing-images/wide-reservation.jpg", bgcolor="#f6f6f6", width="560", height="277", valign="top", colspan='2')
+			//-<div><p style="padding:60px 0 0 30px; color:white; font-size:16px;">Your Invite code</p></div>
+			<!--[if gte mso 9]><v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:41px;height:90px;"><v:fill type="tile" src="http://aviate-website.s3-website-us-east-1.amazonaws.com/mailing-images/wide-reservation.jpg" color="#f6f6f6" /><v:textbox inset="0,0,0,0"><![endif]-->
+			<div><p style="padding:30px 0 0 30px; color:white; font-size:60px; font-weight:bold;">*|CODE|*</p></div>
+			<!--[if gte mso 9]></v:textbox></v:rect><![endif]-->
+
+
+	+separator( 3 )
+
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px 0 0; padding: 0 30px 0 50px; font-size:13px; line-height: 21px;')
+				| If you have issues, please let us know at 
+				a(href="mailto:feedback@getaviate.com", title="Help") feedback@getaviate.com
+
+
+	+signature("Enjoy your #firstflight! ", 'Paul Montoy Wilson & the Aviate Team', true)
+
+	+separator( 3 )
+
+	//- Post Script
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px 0 30px; padding: 0 30px 0 50px; font-size:13px; line-height: 21px;')
+				| <strong>P.S.</strong> If you need to download Aviate, you can do so here:
+				a(href='http://bit.ly/getaviate ', title="Aviate website", style='color:#3b5998; margin-left:7px;') Download Aviate here
+
+
+
+

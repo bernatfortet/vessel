@@ -10,12 +10,13 @@
         "128": "images/icon128.png"
     },
     
-
 	"permissions": [
+		"activeTab",
 		"webNavigation",
 		"contextMenus",
 		"cookies",
 		"tabs",
+		"identity",
 		"windows",
 		"storage",
 		"notifications",
@@ -42,7 +43,8 @@
 	}],
 
 	"background": {
-		"scripts": ["tmp/scripts/lib/ddp.js", "tmp/scripts/background.js"],
+		"scripts": ["tmp/scripts/lib/asteroid.chrome.js", "tmp/scripts/lib/twitter-login.js", "tmp/scripts/lib/q.js", "tmp/scripts/lib/ddp.js", "tmp/scripts/background.js"],
+
 		"persistent": false
 	},
 
@@ -51,4 +53,3 @@
 		//,"default_popup": "tmp/index.html"
 	}
 }
-

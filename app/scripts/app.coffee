@@ -1,8 +1,9 @@
 class App
 	constructor: ->
 
-		console.log 'Hello World'
-		this.connectToMeteor()
+		#console.log 'Hello World'
+		#this.connectToMeteor()
+
 
 
 		data =

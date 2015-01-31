@@ -1,0 +1,53 @@
+extends helpers/layout
+
+block content
+
+	- var backgroundColor = "background-color: #ffffff;"
+	- var width = "600;"
+	- var bold = "font-weight: bold;"
+	- var tcenter = "text-align: center;"
+
+	include helpers/top-logo
+
+	include helpers/separator
+
+	//Paul's Face Message
+	tr(style='background-color: #ffffff;', width='600')
+		td(valign='top', width='413')
+			p(style='padding: 35px 0 10px 30px; font-weight: bold;') Hi! My name is Paul and I’m one of the co-founders of Aviate
+			p(style='padding: 0 0 20px 30px; line-height: 22px;')
+				| Over the past few months we have been building out our closed alpha version of Aviate, and we want to thank you for all of your feedback and help. We’re incredibly grateful for the 
+				a(href='http://bit.ly/1dUst14') overwhelming response
+				|  so far, and astounded by the input we’ve gotten from you.
+
+
+		include helpers/paul-face
+
+	include helpers/separator
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='padding: 30px 30px 0px 30px; line-height: 22px;')
+				| As everyone at Aviate is working around the clock to make the smartest homescreen ever, users have been doing all sorts of awesome things to express their excitement; from tweeting, to making videos, to forming Aviate communities, to even building widgets made specifically for Aviate (see highlights 
+				a(href='http://bit.ly/18Bx7LR') here
+				| ).
+			p(style='padding: 20px 30px 0 30px; line-height: 22px;')
+				| We wanted to take a moment to thank you for being a part of our alpha community -- your enthusiasm inspires us and your input is helping shape the future of Aviate.
+			p(style='padding: 20px 30px 30px 30px; line-height: 22px;')
+				| We’d love to hear your experiences 
+				a(href='http://bit.ly/16fxJXt') @Aviate
+				| , and as always, you can send us any questions, comments or suggestions to 
+				a(href='mailto:feedback@getaviate.com', title="Feedback") feedback@getaviate.com
+				| . Thanks again for all your support and with your help we look forward to rolling out Aviate to more users!
+
+
+	include helpers/separator
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='padding: 10px 0 0 0; text-align: center; font-weight: bold;')
+				| Keep on flyin!
+			p(style='padding: 0; text-align: center;')
+				| — Paul (and the Aviate Team)
+			p(style='padding: 0; text-align: center;')
+				img(align='center', height='90', src='https://d2q0qd5iz04n9u.cloudfront.net/_ssl/proxy.php/http/gallery.mailchimp.com/75d4f4fc986612570d22d1659/images/aviate_logo_grey.png', style='width: 41px; height: 90px;', width='41')

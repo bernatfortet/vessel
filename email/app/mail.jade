@@ -1,0 +1,20 @@
+extends helpers/layout
+
+block head
+	title localization-inactives
+
+block content
+
+
+	tr(width="100%")
+		td(valign='top', colspan='2')
+			p(style='margin: 0 0 8px 0; padding:0 24px; font-size: 14px; line-height: 22px; font-weight:bold; text-transform:uppercase;')
+				| Top 3 Articles for you
+	
+	+separator( 16 )
+
+	//( title, url, description, source)
+	+article( 'LINK1_NAME', 'LINK1_URL', 'LINK1_DESC', 'LINK1_SOURCE' )
+	+article( 'LINK2_NAME', 'LINK2_URL', 'LINK2_DESC', 'LINK2_SOURCE' )
+	+article( 'LINK3_NAME', 'LINK3_URL', 'LINK3_DESC', 'LINK3_SOURCE' )
+

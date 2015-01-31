@@ -1,31 +1,35 @@
 console.log "I'm in the background"
 
 class App
+	userId: null
 	constructor: ->
 
-		console.log 'Hello World'
-		this.connectToMeteor()
+		console.log 'Hello 122 World'
+		#this.connectToMeteor()
 
+		this.ddp = new Asteroid("localhost:3000");
 
-	connectToMeteor: ->
-
-		options = 
-			endpoint: "ws://localhost:3000/websocket"
-			SocketConstructor: WebSocket
-
-		this.ddp = new DDP(options);
-
-		this.ddp.on('connected', ->
+		this.ddp.on('connected', =>
 			console.log 'Connected'
+
+			this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then =>
+				this.ddp.loginWithTwitter()
+		)
+
+		this.ddp.on('login', (loggedInUserId) =>
+			console.log 'Logged, userId:', loggedInUserId
+			this.userId = loggedInUserId
 		)
 
 	sendLink: (link_title, fav_icon_url, link_url) ->
+		console.log this.userId
 		linkData = 
-			link_title: link_title,
-			fav_icon_url: fav_icon_url,
-			link_url: link_url,
+			link_title: link_title
+			fav_icon_url: fav_icon_url
+			link_url: link_url
+			owner: this.userId
 
-		this.ddp.method('addLink', [linkData])
+		this.ddp.call('addLink', linkData)
 		console.log 'sending links'
 
 
@@ -38,8 +42,7 @@ app = new App()
 
 
 chrome.browserAction.onClicked.addListener( (tab) ->
-	console.log 'browserAction Clicked', tab
-	
+	console.log 'browserAction Clicked', tab	
 	app.sendLink(tab.title, tab.favIconUrl, tab.url)
 )
 

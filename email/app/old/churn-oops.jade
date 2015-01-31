@@ -1,0 +1,32 @@
+extends helpers/layout
+
+block head
+	title Oops
+
+block content
+
+	tr(style="background-color: #23b4f8;")
+		td(valign='top', colspan='2')
+			p(style='margin: 48px 0 48px 0; padding:0 50px; font-size:38px; line-height:36px; font-weight:bold; text-align:center; color:#ffffff;')
+				| Oops!
+
+	+spacer( 24 )
+	tr(style=backgroundColor, width="100%")
+		td(valign='top', colspan='2')
+			p(style='margin: 0 0 8px 0; padding:0 50px; font-size: 14px; line-height: 22px;')
+				| Our bad! We sent over the wrong link in that last email. ...or did we? (We did.) 
+			p(style='margin: 0 0 8px 0; padding:0 50px; font-size: 14px; line-height: 22px;')
+				| Try giving us your feedback <a href="https://www.getfeedback.com/r/keZsyaOD">here</a>.
+
+	+spacer( 24 )
+
+	tr(style=backgroundColor, width="100%")
+		td(valign='top', colspan='2')
+
+			p(style='margin: 0 0 8px 0; padding:0 50px; font-size: 14px; line-height: 22px;')
+				| Thanks!
+
+			p(style='margin: 0 0 8px 0; padding:0 50px; font-size: 14px; line-height: 22px;')
+				| Paul, Mark, Will and the Aviate Crew
+
+	+spacer( 24 )

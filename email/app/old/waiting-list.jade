@@ -1,0 +1,35 @@
+extends helpers/layout
+
+block head
+	title waiting-list
+
+block content
+
+	tr(style=backgroundColor, width='600')
+		td(valign='top', width='390')
+			p(style='padding: 35px 0 0 50px; font-weight: bold; ') My name is Paul and I’m a Co-Founder of Aviate.
+			p(style='padding: 15px 0 10px 50px; line-height: 21px;') I want to thank you for signing up to join the Aviate community. We are working around the clock to get Aviate Beta to you as soon as we can. We will send you an invite code as soon as it is ready.
+
+		include helpers/paul-face
+
+	+separator( 3 )
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px 0 0; padding: 0 30px 0 50px; font-size: 13px; line-height: 24px;')
+				| In the meantime, we made a video that shows how Aviate will simplify your phone and deliver useful information throughout your day. We hope you watch now:
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', align="center", width=width, colspan='2')
+			a(href="http://bit.ly/1cnSCE3", title="Watch Aviate in action here")
+				img(align='center', width='500', height='261', src='http://aviate-website.s3-website-us-east-1.amazonaws.com/mailing-images/video.jpg', alt="Watch Aviate in action here", style='width: 500px; height: 261px; margin-top:20px; text-align:center;' )
+
+
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px 0 0; padding: 0 30px 0 50px; font-size: 13px; line-height: 24px;')
+				| If you have any friends who are current users, you can ask them to send you one of their five invites. 
+
+	
+	+signature("Best,", 'Paul Montoy-Wilson', true)

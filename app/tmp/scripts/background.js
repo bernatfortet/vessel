@@ -4,31 +4,34 @@
   console.log("I'm in the background");
 
   App = (function() {
-    function App() {
-      console.log('Hello World');
-      this.connectToMeteor();
-    }
+    App.prototype.userId = null;
 
-    App.prototype.connectToMeteor = function() {
-      var options;
-      options = {
-        endpoint: "ws://localhost:3000/websocket",
-        SocketConstructor: WebSocket
-      };
-      this.ddp = new DDP(options);
-      return this.ddp.on('connected', function() {
-        return console.log('Connected');
+    function App() {
+      var _this = this;
+      console.log('Hello 122 World');
+      this.ddp = new Asteroid("localhost:3000");
+      this.ddp.on('connected', function() {
+        console.log('Connected');
+        return _this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then(function() {
+          return _this.ddp.loginWithTwitter();
+        });
       });
-    };
+      this.ddp.on('login', function(loggedInUserId) {
+        console.log('Logged, userId:', loggedInUserId);
+        return _this.userId = loggedInUserId;
+      });
+    }
 
     App.prototype.sendLink = function(link_title, fav_icon_url, link_url) {
       var linkData;
+      console.log(this.userId);
       linkData = {
         link_title: link_title,
         fav_icon_url: fav_icon_url,
-        link_url: link_url
+        link_url: link_url,
+        owner: this.userId
       };
-      this.ddp.method('addLink', [linkData]);
+      this.ddp.call('addLink', linkData);
       return console.log('sending links');
     };
 

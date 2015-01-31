@@ -1,0 +1,41 @@
+extends helpers/layout
+
+block head
+	title invite-friends
+
+block content
+
+
+	tr(style=backgroundColor, width='600')
+		td(valign='top', width='390')
+			p(style='padding: 35px 0 0 50px; margin-bottom:0; font-weight: bold; font-size:18px; ') You are so awesome.
+			p(style='padding: 15px 0 10px 50px;') We are so glad to have you as a member of the Aviate Crew.
+
+
+			p(style='margin: 20px 0 0; padding: 0 30px 0 50px; font-size:14px; line-height: 27px;')
+				| <strong>Now fly with friends:</strong></br>
+			p(style='margin: 0 0 30px; padding: 0 30px 0 50px; font-size:13px; line-height: 21px;')
+				| All Aviate Beta users now get five invite codes. We'd love for you to invite friends you think will love Aviate.
+
+
+			p(style='margin: 20px 0 0; padding: 0 30px 0 50px; font-size:14px; line-height: 27px;')
+				| <strong>Here is how to invite them:</strong></br>
+			p(style='margin: 0 0 30px; padding: 0 30px 0 50px; font-size:13px; line-height: 21px;')
+				| 1. From the homescreen, <strong>swipe</strong> to the Spaces page on the left.</br>
+				| 2. At the bottom you’ll see an <strong>“Invite” button</strong>.
+
+		include helpers/paul-face
+
+
+	+separator( 3 )
+
+
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px 0 0; padding: 0 30px 0 50px; font-size:18px; line-height: 24px; font-weight: bold;')
+				| We hope you invite friends you think will love Aviate!
+
+
+	+signature( "Sincerely,", 'Paul Montoy-Wilson & the Aviate Crew.', true )
+
+	+separator( 20 )

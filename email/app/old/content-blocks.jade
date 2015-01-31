@@ -1,0 +1,66 @@
+extends helpers/layout
+
+block head
+	title *****
+
+block content
+
+
+	// Basic Centered Text
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='padding: 30px 0 10px 30px; #{bold} #{tcenter};')
+				| We're excited to invite you to Aviate!
+			p(style='padding: 0 0 20px 30px; #{tcenter}')
+				| If you haven't yet installed Aviate,
+				a(href='http://bit.ly/getaviate', title='you can download Aviate here', target='_blank')
+				| you can download it here
+
+
+	// Paul's Face Message
+	tr(style='background-color: #ffffff;', width='600')
+		td(valign='top', width='413', colspan='1')
+			p(style='padding: 35px 0 10px 30px; font-weight: bold;')
+				| Hi! My name is Paul and I’m one of the co-founders of Aviate
+			p(style='padding: 0 0 20px 30px; line-height: 22px;')
+				| Over the past few months, we have been building out our closed alpha version of Aviate, and we want to thank you for your interest and patience as we’ve worked to create the best homescreen experience possible. We’ve been
+				a(href='http://bit.ly/1dUst14') blown away by the excitement
+				| from everyone, and the volume of invite requests to try out the alpha.
+
+		include helpers/paul-face
+
+	include helpers/separator
+
+	// Full Image
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='margin: 0; text-align: center;')
+				a(style='padding: 0;', href='http://bit.ly/getaviate', target='_self')
+				img(align='none', height='394', src='https://d2q0qd5iz04n9u.cloudfront.net/_ssl/proxy.php/http/gallery.mailchimp.com/75d4f4fc986612570d22d1659/images/simplify.png', style='width: 600px; height: 394px;', width=width)
+
+	include helpers/separator
+
+	// Button
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='padding: 30px 0; text-align: center;')
+				a(style='padding: 0;', href='http://bit.ly/getaviate', target='_self')
+				img(align='none', height='72', src='https://d2q0qd5iz04n9u.cloudfront.net/_ssl/proxy.php/http/gallery.mailchimp.com/75d4f4fc986612570d22d1659/images/install_aviate.png', style='width: 336px; height: 72px;', width='336')
+
+	include helpers/separator
+
+	// Basic Paragraph Style
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 500px; margin: 30px auto; padding: 0 30px 0 30px; font-size: 16px; line-height: 24px; text-align: center;')
+				| Over the past few months, we have been building out our closed alpha version of Aviate, and we want to thank you
+
+
+	+signature("Thanks again for flying with us! ", '', true)
+
+	// Post Script
+	tr(style=backgroundColor, width=width)
+		td(valign='top', width=width, colspan='2')
+			p(style='width: 540px; margin: 30px 0; padding: 0 30px 0 30px; font-size:13px; line-height: 21px;')
+				| <strong>PS.</strong>  If you want to learn more, we made a video that shows how Aviate will simplify your phone and deliver useful information throughout your day. You can watch here: 
+				a(href='http://getaviate.com', title="Aviate website", style='color:#3b5998; margin-left:7px;') AVIATE WEBSITE

@@ -11,5 +11,8 @@ coffeescript
 email
 mquandalle:jade
 accounts-ui
-accounts-facebook
 wylio:mandrill
+dfischer:phantomjs
+accounts-twitter
+service-configuration
+mondora:asteroid

@@ -4,8 +4,6 @@
   App = (function() {
     function App() {
       var data;
-      console.log('Hello World');
-      this.connectToMeteor();
       data = {
         name: "bernat"
       };
