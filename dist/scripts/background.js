@@ -7,20 +7,41 @@
     App.prototype.userId = null;
 
     function App() {
+      /*
+      		chrome.storage.sync.set
+      			'value': theValue
+      		, ->
+      			# Notify that we saved.
+      			message 'Settings saved'
+      			return
+      
+      		chrome.storage.sync.get 'value' , (items) ->
+      			console.log 'Items', items
+      			return
+      */
+
+      this.connectToMeteor();
+    }
+
+    App.prototype.connectToMeteor = function() {
       var _this = this;
-      console.log('Hello 122 World');
       this.ddp = new Asteroid("localhost:3000");
       this.ddp.on('connected', function() {
         console.log('Connected');
-        return _this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then(function() {
-          return _this.ddp.loginWithTwitter();
+        return _this.ddp.resumeLoginPromise.then(function() {
+          return console.log('ok');
+        }).fail(function() {
+          console.log('fail, now log in');
+          return _this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then(function() {
+            return _this.ddp.loginWithTwitter();
+          });
         });
       });
-      this.ddp.on('login', function(loggedInUserId) {
+      return this.ddp.on('login', function(loggedInUserId) {
         console.log('Logged, userId:', loggedInUserId);
         return _this.userId = loggedInUserId;
       });
-    }
+    };
 
     App.prototype.sendLink = function(link_title, fav_icon_url, link_url) {
       var linkData;

@@ -5,7 +5,9 @@ Meteor.startup ->
 		key: 'gnrTHAhbdEuaEzmWscnckA'
 
 
+	Meteor.call( 'sendEmailToAllUsers' )
 	#Meteor.call( 'sendMandrillEmail' )
+	#Meteor.call( 'test' )
 
 	
 

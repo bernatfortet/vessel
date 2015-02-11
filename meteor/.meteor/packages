@@ -16,3 +16,5 @@ dfischer:phantomjs
 accounts-twitter
 service-configuration
 mondora:asteroid
+accounts-facebook
+accounts-google

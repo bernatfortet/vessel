@@ -4,16 +4,41 @@ class App
 	userId: null
 	constructor: ->
 
-		console.log 'Hello 122 World'
-		#this.connectToMeteor()
+		###
+		chrome.storage.sync.set
+			'value': theValue
+		, ->
+			# Notify that we saved.
+			message 'Settings saved'
+			return
 
+		chrome.storage.sync.get 'value' , (items) ->
+			console.log 'Items', items
+			return
+		###
+
+
+		this.connectToMeteor()
+
+
+	connectToMeteor: ->
+		#this.ddp = new Asteroid("vesselapp.meteor.com");
 		this.ddp = new Asteroid("localhost:3000");
+
 
 		this.ddp.on('connected', =>
 			console.log 'Connected'
 
-			this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then =>
-				this.ddp.loginWithTwitter()
+
+			this.ddp.resumeLoginPromise.then( ->
+				console.log ('ok')
+			).fail( =>
+				console.log 'fail, now log in'
+
+				this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then =>
+					this.ddp.loginWithTwitter()
+					#this.ddp.loginWithFacebook()
+			)
 		)
 
 		this.ddp.on('login', (loggedInUserId) =>
@@ -42,7 +67,7 @@ app = new App()
 
 
 chrome.browserAction.onClicked.addListener( (tab) ->
-	console.log 'browserAction Clicked', tab	
+	console.log 'browserAction Clicked', tab
 	app.sendLink(tab.title, tab.favIconUrl, tab.url)
 )
 

@@ -57,7 +57,7 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            dist: ['<%= basement.tmp %>', '<%= basement.dist %>/*'],
+            dist: ['<%= basement.tmp %>', '<%= basement.dist %>/*', 'dist.crx'],
             server: '<%= basement.tmp %>'
         },
         coffee: {
@@ -167,9 +167,11 @@ module.exports = function (grunt) {
                     dest: '<%= basement.dist %>',
                     src: [
                         '*.{ico,txt}',
+                        'manifest.json',
                         'scripts/**/*.js',
                         'styles/fonts/**',
                         '.htaccess',
+                        '{,*/}*.{webp,gif,jpg,png,svg}',
                         'images/{,*/}*.{webp,gif,jpg,png,svg}'
                     ]
                 }]

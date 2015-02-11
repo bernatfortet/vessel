@@ -7,13 +7,13 @@ Meteor.publish( 'links', ->
 )
 
 
-
 Accounts.validateLoginAttempt( ( data ) ->
 	#console.log 'test', data
 	#console.log data.user._id
 
 	return true
 )
+
 
 Meteor.methods
 
@@ -37,89 +37,84 @@ Meteor.methods
 		console.log 'Removing Link', linkId
 		Links.remove(linkId)
 
+	test: () ->
+		console.log this.User()
 
 
 
-	sendEmail: (test) ->
-
-		LINKS_PER_EMAIL = 3
-
-		unsentEmails = Links.find({ sent: false}, { limit: 3 }).fetch()
-
-		#console.log 'unsentEmails', unsentEmails.fetch()
-
-
-		link1 = Links.update({ sent: false}, { $set: {sent: true } })
-		link2 = Links.update({ sent: false}, { $set: {sent: true } })
-		link3 = Links.update({ sent: false}, { $set: {sent: true } })
-
-		console.log link1.link_title
-		console.log link2.link_title
-		console.log link3.link_title
-
+	sendEmailToAllUsers: () ->
+		users = Meteor.users.find()
+		users.forEach (user) ->
+			Meteor.call( 'sendMandrillEmail', user._id )
 		
-		#take all unset emails
-		#mark them as sent
 
-		console.log 'sending email'
-
-		#this.unblock()
+	sendMandrillEmail: ( userId ) ->
+		console.log userId
 
 
-		#Meteor.call( 'sendMandrillEmail' )
 
-	sendMandrillEmail: () ->
+		#Links.find({ sent: false, owner: 'H6pSpSSiFKbzsEPvd' }, { limit: 3 }).fetch()
+		#Links.update({ sent: false, owner: 'H6pSpSSiFKbzsEPvd' }, { $set: {sent: true } })
 
 
-		unsentEmails = Links.find({ sent: false}, { limit: 3 }).fetch()
+		unsentEmails = Links.find({ sent: false, owner: userId }, { limit: 3 }).fetch()
+		console.log 'unsentMEails', unsentEmails.length
 
-		email = Meteor.Mandrill.sendTemplate
-			template_name: 'links-digest'
-			template_content: [
-				{
-					name: "header"
-					content: "Hello b"
-				}
-			]
-			message:
-				global_merge_vars: [
+		if( unsentEmails.length >= 3 )
+
+			email = Meteor.Mandrill.sendTemplate
+				template_name: 'links-digest'
+				template_content: [
 					{
-						name: "link1_name"
-						content: unsentEmails[0].link_title
-					}
-					{
-						name: "link1_url"
-						content: unsentEmails[0].link_url
-					}
-					{
-						name: "link2_name"
-						content: unsentEmails[1].link_title
-					}
-					{
-						name: "link2_url"
-						content: unsentEmails[1].link_url
-					}
-					{
-						name: "link3_name"
-						content: unsentEmails[2].link_title
-					}
-					{
-						name: "link3_url"
-						content: unsentEmails[2].link_url
+						name: "header"
+						content: "Hello b"
 					}
 				]
-				from_email: 'email@example.com'
-				to: [email: "socrattes@gmail.com"]
+				message:
+					global_merge_vars: [
+						{
+							name: "link1_name"
+							content: unsentEmails[0].link_title
+						}
+						{
+							name: "link1_url"
+							content: unsentEmails[0].link_url
+						}
+						{
+							name: "link2_name"
+							content: unsentEmails[1].link_title
+						}
+						{
+							name: "link2_url"
+							content: unsentEmails[1].link_url
+						}
+						{
+							name: "link3_name"
+							content: unsentEmails[2].link_title
+						}
+						{
+							name: "link3_url"
+							content: unsentEmails[2].link_url
+						}
+					]
+					from_email: 'email@example.com'
+					to: [email: "socrattes@gmail.com"]
 
 
-		console.log email
+
+			
+			Links.update({ sent: false, owner: userId }, { $set: {sent: true } })
+			Links.update({ sent: false, owner: userId }, { $set: {sent: true } })
+			Links.update({ sent: false, owner: userId }, { $set: {sent: true } })
+
+			console.log email
 
 
 SyncedCron.add
 	name: 'Send Links Digest'
 	schedule: (parser) ->
-		return parser.text('every 10 seconds')
+		return parser.text('at 7:00pm every day')
 	job: ->
-		Meteor.call('sendEmail', 'sent by Cron')
+		Meteor.call('sendEmailToAllUsers', 'sent by Cron')
 
-#	SyncedCron.start()
+	SyncedCron.start()
