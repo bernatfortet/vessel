@@ -1,30 +1,37 @@
 head
-	title Vessel
+  title Vessel
 
 body
-	+loginButtons
-	.shell
+  +loginButtons
+  .shell
+    form
+      //input(type="text", placeholder="insert Userid")
+      input#SendToEmail(placeholder='insert email to send to', name="email")
+      .sendEmailToUser.button Send
+        
 
-		//+addLink
+    .links-list
+      h2 Today's
+      each links
+        +link
 
-		.links-list
-			h2 Today's
-			each links
-				+link
+      h2 Sent Links
+      each sent_links
+        +link
 
-			h2 Sent Links
-			each sent_links
-				+link
 
 
 template(name="addLink")
-	form.add-link
-		input(type="text" name='text' placeholder="Add Link")
+  form.add-link
+    input(type="text" name='text' placeholder="Add Link")
 
 template(name="link")
-	.link
-		.title
-			img.favicon(src="{{fav_icon_url}}")
-			.text {{link_title}}
-		.url {{link_url}}
-		.remove
+  .link( id='{{_id}}')
+    .title
+      img.favicon(src="{{fav_icon_url}}")
+      .text {{link_title}}
+    .url {{link_url}}
+    .ownerEmail {{ownerEmail}}
+    .isSent Is sent {{sent}}
+    input(type='checkbox')
+    .remove

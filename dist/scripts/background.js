@@ -20,6 +20,11 @@
       			return
       */
 
+      var userEmail;
+      if (localStorage['email'] === null) {
+        userEmail = prompt("Please enter your email");
+        localStorage["email"] = userEmail;
+      }
       this.connectToMeteor();
     }
 
@@ -31,10 +36,7 @@
         return _this.ddp.resumeLoginPromise.then(function() {
           return console.log('ok');
         }).fail(function() {
-          console.log('fail, now log in');
-          return _this.ddp.subscribe("meteor.loginServiceConfiguration").ready.then(function() {
-            return _this.ddp.loginWithTwitter();
-          });
+          return console.log('fail, now log in');
         });
       });
       return this.ddp.on('login', function(loggedInUserId) {
@@ -50,7 +52,8 @@
         link_title: link_title,
         fav_icon_url: fav_icon_url,
         link_url: link_url,
-        owner: this.userId
+        owner: this.userId,
+        ownerEmail: localStorage['email']
       };
       this.ddp.call('addLink', linkData);
       return console.log('sending links');
@@ -64,14 +67,16 @@
 
   chrome.browserAction.onClicked.addListener(function(tab) {
     console.log('browserAction Clicked', tab);
-    return app.sendLink(tab.title, tab.favIconUrl, tab.url);
+    app.sendLink(tab.title, tab.favIconUrl, tab.url);
+    return chrome.tabs.sendMessage(tab.id, {
+      action: "added_link",
+      tab: tab
+    }, function(response) {
+      return console.log(response);
+    });
   });
 
   /*
-  chrome.tabs.getSelected( null, (tab) -> 
-  	console.log 'test', tab
-  )
-  
   
   chrome.runtime.sendMessage( {greeting: "hello"}, (response) ->
   	console.log(response.farewell);

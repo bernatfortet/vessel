@@ -1,14 +1,14 @@
 console.log "i'm the content script"
 
-chrome.runtime.sendMessage( {greeting: "hello"}, (response) ->
-	console.log(response.farewell);
-)
+#chrome.runtime.sendMessage( {greeting: "hello"}, (response) ->
+#	console.log(response.farewell);
+#)
 
 
 chrome.runtime.onMessage.addListener( 
 	(request, sender, sendResponse)	->
-		console.log( if sender.tab then "from a content script:" + sender.tab.url else "from the extension")
+		console.log 'This is the content script. link has been added'
 
-		if (request.greeting == "hello")
-			sendResponse({farewell: "goodbye"});
+		if( request.action == 'added_link' )
+			alert('Link Added')
 )

@@ -153,58 +153,11 @@
                         <tr width="100%" height="16px">
                           <td valign="top" width="600" colspan="2"></td>
                         </tr>
-            <!--( title, url, description, source)-->
-                                    <tr width="100%" style="background-color: #f2f2f2;" height="24px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                        <tr style="background-color: #f2f2f2;" width="100%">
-                          <td valign="top" width="100px" colspan="1"><a href="*|LINK1_URL|*"><img align="center" width="199" height="192" src="https://gallery.mailchimp.com/85fa9b289574f17996df3126d/images/0f652982-e829-466a-b279-a6cff492bc49.png" alt="Check out our new update" style="width:199px; display:block; margin: 0 0 0 24px; text-align:center;"/></a></td>
-                          <td valign="top" width="300px" colspan="1"><a href="*|LINK1_URL|*">
-                              <p style="margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;">*|LINK1_NAME|*</p></a>
-                            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px;">*|LINK1_DESC|*</p>
-                            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px;">*|LINK1_SOURCE|*</p>
-                          </td>
-                        </tr>
-                                    <tr width="100%" style="background-color: #f2f2f2;" height="24px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                                    <tr width="100%" height="8px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                                    <tr width="100%" style="background-color: #f2f2f2;" height="24px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                        <tr style="background-color: #f2f2f2;" width="100%">
-                          <td valign="top" width="100px" colspan="1"><a href="*|LINK2_URL|*"><img align="center" width="199" height="192" src="https://gallery.mailchimp.com/85fa9b289574f17996df3126d/images/0f652982-e829-466a-b279-a6cff492bc49.png" alt="Check out our new update" style="width:199px; display:block; margin: 0 0 0 24px; text-align:center;"/></a></td>
-                          <td valign="top" width="300px" colspan="1"><a href="*|LINK2_URL|*">
-                              <p style="margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;">*|LINK2_NAME|*</p></a>
-                            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px;">*|LINK2_DESC|*</p>
-                            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px;">*|LINK2_SOURCE|*</p>
-                          </td>
-                        </tr>
-                                    <tr width="100%" style="background-color: #f2f2f2;" height="24px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                                    <tr width="100%" height="8px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                                    <tr width="100%" style="background-color: #f2f2f2;" height="24px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                        <tr style="background-color: #f2f2f2;" width="100%">
-                          <td valign="top" width="100px" colspan="1"><a href="*|LINK3_URL|*"><img align="center" width="199" height="192" src="https://gallery.mailchimp.com/85fa9b289574f17996df3126d/images/0f652982-e829-466a-b279-a6cff492bc49.png" alt="Check out our new update" style="width:199px; display:block; margin: 0 0 0 24px; text-align:center;"/></a></td>
-                          <td valign="top" width="300px" colspan="1"><a href="*|LINK3_URL|*">
-                              <p style="margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;">*|LINK3_NAME|*</p></a>
-                            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px;">*|LINK3_DESC|*</p>
-                            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px;">*|LINK3_SOURCE|*</p>
-                          </td>
-                        </tr>
-                                    <tr width="100%" style="background-color: #f2f2f2;" height="24px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
-                                    <tr width="100%" height="8px">
-                                      <td valign="top" width="600" colspan="2"></td>
-                                    </tr>
+            <tr style="background-color: #f2f2f2;" width="100%">
+              <td valign="top" width="100px" colspan="1"><a href="{{#with link0}} {{link_url}} {{/with}}"><img align="center" width="199" height="192" src="https://gallery.mailchimp.com/85fa9b289574f17996df3126d/images/0f652982-e829-466a-b279-a6cff492bc49.png" alt="Check out our new update" style="width:199px; display:block; margin: 0 0 0 24px; text-align:center;"/></a></td>
+              <td valign="top" width="300px" colspan="1"><a href="{{#with link0}} {{link_url}} {{/with}}">
+                  <p style="margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;">{{#with link0}} {{link_title}} {{/with}}</p></a></td>
+            </tr>
                         <tr width="100%" height="16px">
                           <td valign="top" width="600" colspan="2"></td>
                         </tr>
@@ -215,7 +168,7 @@
             <tr width="100%;">
               <td valign="top" width="390" colspan="2">
                 <p style="margin: 24px 0 16px; color:#9b928f; font-size: 16px; line-height: 18px; text-align:center;">What doesn't work for you? Do you have suggestions? <a href="contact.html" style="color:#7a6a64; font-weight:bold;">Contact Me</a></p>
-                <p style="margin:0 0 24px; color:#9b928f; font-size: 16px; line-height: 18px; text-align:center;">If you want to stop it, <a href="Unsubscribe.html" style="color:#7a6a64; font-weight:bold;">Unsubscribe</a></p>
+                <p style="margin:0 0 24px; color:#9b928f; font-size: 16px; line-height: 18px; text-align:center;">If you want to stop it, <a href="{{unsub &quot;http://redirecturl.com&quot;}}" style="color:#7a6a64; font-weight:bold;">Unsubscribe</a></p>
               </td>
             </tr>
           </tbody>

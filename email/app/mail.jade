@@ -13,8 +13,15 @@ block content
 	
 	+separator( 16 )
 
-	//( title, url, description, source)
-	+article( 'LINK1_NAME', 'LINK1_URL', 'LINK1_DESC', 'LINK1_SOURCE' )
-	+article( 'LINK2_NAME', 'LINK2_URL', 'LINK2_DESC', 'LINK2_SOURCE' )
-	+article( 'LINK3_NAME', 'LINK3_URL', 'LINK3_DESC', 'LINK3_SOURCE' )
+	tr(style=backgroundColor, width="100%")
 
+		td(valign='top', width='300px', colspan='1')
+			a(href="{{#with link0}} {{link_url}} {{/with}}")
+				p(style='margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;')
+					| {{#with link0}} {{link_title}} {{/with}}
+
+
+
+//td(valign='top', width='100px', colspan='1')
+	a(href="{{#with link0}} {{link_url}} {{/with}}")
+		img(align='center', width='199', height='192', src='https://gallery.mailchimp.com/85fa9b289574f17996df3126d/images/0f652982-e829-466a-b279-a6cff492bc49.png', alt="Check out our new update", style='width:199px; display:block; margin: 0 0 0 24px; text-align:center;' )
