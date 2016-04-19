@@ -1,10 +1,19 @@
 Meteor.publish( 'links', ->
 	return Links.find(
-		#$or: [
-		#	owner: @userId
-		#]
+		$or: [
+			owner: @userId
+		]
 	)
 )
+
+Accounts.onCreateUser (options, user) ->
+	console.log user
+	console.log
+	if (options.profile)
+		user.profile = options.profile
+		user.profile.email = user.services.facebook.email
+
+	return user
 
 
 Accounts.validateLoginAttempt( ( data ) ->
@@ -29,8 +38,10 @@ Meteor.methods
 
 	addLink: (linkData) ->
 		console.log "Link Data ----------------"
-		console.log linkData.link_title
-		console.log 'owner Email', linkData.ownerEMail
+		console.log linkData
+		console.log 'owner Email', linkData.ownerEmail
+
+		owner = Meteor.users.findOne({ "profile.email" : 'socrattes@gmail.com' })._id
 
 		Links.insert
 			link_title: linkData.link_title
@@ -38,7 +49,7 @@ Meteor.methods
 			link_url: linkData.link_url
 			sent: false
 			createdAt: new Date()
-			owner: linkData.owner
+			owner: owner
 			ownerEmail: linkData.ownerEmail
 
 
@@ -57,15 +68,16 @@ Meteor.methods
 
 	sendLatest3LinksToUser: ( userId ) ->
 
-
-
 		#Links.find({ sent: false, owner: 'H6pSpSSiFKbzsEPvd' }, { limit: 3 }).fetch()
 		#Links.update({ sent: false, owner: 'H6pSpSSiFKbzsEPvd' }, { $set: {sent: true } })
 
 
-		#unsentEmails = Links.find({ sent: false, owner: userId }, { limit: 3 }).fetch()
-		unsentEmails = Links.find({ sent: false }, { limit: 3 }).fetch()
-		console.log 'unsentMEails', unsentEmails.length
+		#7jC7opidqn5iPy5S4
+
+		userEmail = Meteor.users.findOne({ "_id" : userId }).profile.email
+		linksList = Links.find({ sent: false }, { limit: 3 }).fetch()
+
+		Meteor.call( 'sendEmail', linksList, userEmail )
 
 		
 

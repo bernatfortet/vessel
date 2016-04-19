@@ -39,6 +39,7 @@ class App
 		this.ddp.on('connected', =>
 			console.log 'Connected'
 
+			###
 			this.ddp.resumeLoginPromise.then( ->
 				console.log ('ok')
 			).fail( =>
@@ -48,6 +49,7 @@ class App
 				#	this.ddp.loginWithTwitter()
 					#this.ddp.loginWithFacebook()
 			)
+			###
 
 		)
 
@@ -57,24 +59,42 @@ class App
 		)
 
 	sendLink: (link_title, fav_icon_url, link_url) ->
-		console.log this.userId
-		linkData = 
-			link_title: link_title
-			fav_icon_url: fav_icon_url
-			link_url: link_url
-			owner: this.userId
-			ownerEmail: localStorage['email']
 
-		this.ddp.call('addLink', linkData)
-		console.log 'sending links'
+		if( localStorage['email']? )
+			linkData = 
+				link_title: link_title
+				fav_icon_url: fav_icon_url
+				link_url: link_url
+				owner: this.userId
+				ownerEmail: localStorage['email']
 
+			this.ddp.call('addLink', linkData)
+			console.log 'Sending Link to', linkData.ownerEmail
+		else
+			app.authenticateUser()
+
+	authenticateUser: ->
+		#chrome.extension.sendMessage({redirect: "http://localhost:3000"});
+		# chrome.tabs.getCurrent(null, (tab) ->
+		# 	console.log 'asdfasdfasfd'
+		# 	chrome.tabs.update(tab.id, {url: 'http://localhost:3000'});
+		# )
+
+		# chrome.tabs.getSelected(null, (tab) ->
+		# 	tablink = tab.url
+		# 	chrome.tabs.update(tab.id, {url: 'http://localhost:3000'});
+		# )
+
+		chrome.tabs.create({ url: 'http://localhost:3000' });
+
+	setUserEmailOnLocalStorage: (email) ->
+
+		localStorage["email"] = email
+		console.log 'Extension now will send emails to ', email
 
 
 
 app = new App()
-
-
-
 
 
 chrome.browserAction.onClicked.addListener( (tab) ->
@@ -89,6 +109,15 @@ chrome.browserAction.onClicked.addListener( (tab) ->
 	)
 
 )
+
+chrome.runtime.onMessageExternal.addListener (request, sender, sendResponse) ->
+	console.log request, sender, sendResponse
+
+
+	if( request.userEmail? )
+		app.setUserEmailOnLocalStorage( request.userEmail )
+	console.log 'Hello'
+
 
 ###
 

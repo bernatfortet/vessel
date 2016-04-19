@@ -32,12 +32,15 @@
 		"chrome://favicon/"
 	],
 
+	"externally_connectable": {
+	  "matches": ["http://localhost:3000/"]
+	},
 	"content_scripts": [ {
 		"matches": [
 			"http://*/*",
 			"https://*/*"
 		],
-		"js" :["scripts/content_script.js"],
+		"js" :["scripts/content_script.js", "scripts/lib/jquery.min.js", "scripts/lib/velocity.min.js"],
 		"run_at": "document_end"   
 	}],
 

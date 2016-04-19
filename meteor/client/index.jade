@@ -2,23 +2,42 @@ head
   title Vessel
 
 body
+
+
   +loginButtons
-  .shell
-    form
-      //input(type="text", placeholder="insert Userid")
-      input#SendToEmail(placeholder='insert email to send to', name="email")
-      .sendEmailToUser.button Send
-        
 
-    .links-list
-      h2 Today's
-      each links
-        +link
+  if currentUser
+    .shell
+      form
+        //input(type="text", placeholder="insert Userid")
+        //input#SendToEmail(placeholder='insert email to send to', name="email")
+        //.sendEmailToUser.button Send
+          
 
-      h2 Sent Links
-      each sent_links
-        +link
+      .links-list
+        h2 Unsent
+        each links
+          +link
 
+        h2 Sent Links
+        each sent_links
+          +link
+  else
+    +login
+
+  
+  
+
+
+template(name="login")
+  div
+    //h1 When do you want your emails to come?
+    //input( type="text", value="8pm")
+
+
+
+
+  //http://jonthornton.github.io/jquery-timepicker/
 
 
 template(name="addLink")

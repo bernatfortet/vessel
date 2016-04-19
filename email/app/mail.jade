@@ -15,10 +15,26 @@ block content
 
 	tr(style=backgroundColor, width="100%")
 
-		td(valign='top', width='300px', colspan='1')
-			a(href="{{#with link0}} {{link_url}} {{/with}}")
-				p(style='margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;')
-					| {{#with link0}} {{link_title}} {{/with}}
+		{{#if link0}}
+			td(valign='top', width='300px', colspan='1')
+				a(href="{{#with link0}} {{link_url}} {{/with}}")
+					p(style='margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;')
+						| {{#with link0}} {{link_title}} {{/with}}
+		{{#/if}}
+
+		{{#if link1}}
+			td(valign='top', width='300px', colspan='1')
+				a(href="{{#with link1}} {{link_url}} {{/with}}")
+					p(style='margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;')
+						| {{#with link1}} {{link_title}} {{/with}}
+		{{#/if}}
+
+		{{#if link2}}
+			td(valign='top', width='300px', colspan='1')
+				a(href="{{#with link2}} {{link_url}} {{/with}}")
+					p(style='margin: 0px 0 8px 0; font-size: 22px; line-height: 24px; font-weight:bold;')
+						| {{#with link2}} {{link_title}} {{/with}}
+		{{#/if}}
 
 
 

@@ -46,13 +46,12 @@ Template.body.events
 		console.log 'Sending', linksIdList, userEmail 
 		Meteor.call "sendLinksListToEmail", linksIdList, userEmail 
 
-		#look at all the items with checkbox
-			# Get their owner email
-			#send those
+Accounts.onLogin( ->
+	editorExtensionId = 'focfmjbdddlahaklhobfmnmknmiecifp'
+	userEmail = Meteor.user().profile.email
 
-		#k6iMazGXa6Ngz65zz
+	chrome.runtime.sendMessage editorExtensionId, { userEmail:  userEmail }, (response) ->
 
-
-
-
-
+		console.log 'test123123', userEmail
+		
+)
